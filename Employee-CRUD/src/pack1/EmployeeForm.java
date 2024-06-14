@@ -171,6 +171,37 @@ public class EmployeeForm extends JFrame {
 		btnSave.setBounds(78, 200, 89, 23);
 		contentPane.add(btnSave);
 		
+		JButton btnUpdate = new JButton("UPDATE");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				Employee emp = new Employee();
+				emp.setEmpId( Integer.parseInt( txtId.getText() ) );
+				emp.setName(txtName.getText());
+				emp.setSurname(txtSurname.getText());
+				emp.setGender(gender.getSelection().getActionCommand());
+				emp.setCity(cbCity.getSelectedItem().toString());
+				
+				
+				empDb.updateEmployee(emp);
+				JOptionPane.showMessageDialog(contentPane, "Employee Updated!");
+				txtId.setText("");
+				txtName.setText("");
+				txtSurname.setText("");
+				cbCity.setSelectedIndex(0);
+				gender.clearSelection();
+				fillTheTable();
+				
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnUpdate.setBounds(78, 225, 89, 23);
+		contentPane.add(btnUpdate);
+		
 		JLabel lblNewLabel_1 = new JLabel("Employee List");
 		lblNewLabel_1.setBounds(207, 25, 86, 14);
 		contentPane.add(lblNewLabel_1);

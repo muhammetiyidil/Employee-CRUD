@@ -36,4 +36,15 @@ public class EmployeeDb {
 		ps.setInt(1, empId);
 		ps.executeUpdate();
 	}
+	
+	public void updateEmployee(Employee e) throws SQLException{
+		String query = "update employee set name=?, surname=?, gender=?, city=? where id=?";
+		PreparedStatement ps = getConnected().prepareStatement(query);
+		ps.setString(1, e.getName());
+		ps.setString(2, e.getSurname());
+		ps.setString(3, e.getGender());
+		ps.setString(4, e.getCity());
+		ps.setInt(5, e.getEmpId());
+		ps.executeUpdate();
+	}
 }
